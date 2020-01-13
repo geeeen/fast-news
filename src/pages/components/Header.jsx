@@ -1,30 +1,41 @@
 import React from "react";
-import {FormControl, InputLabel, Select, MenuItem} from "@material-ui/core";
+import { Select, MenuItem, Switch, Tooltip } from "@material-ui/core";
+import { COUNTRIES, COUNTRY_FULL_NAME } from "../../constants";
+import styled from "@emotion/styled";
 
-const Header = ({ country, setCountry }) => {
+const Actions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const Header = ({ country, setCountry, colored, setColored }) => {
   return (
-    <div>
-      <FormControl variant="outlined">
-        <InputLabel id="demo-simple-select-outlined-label">
-          Age
-        </InputLabel>
+    <Actions>
+      <Tooltip title="Country" placement="left-start">
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={country}
           onChange={event => setCountry(event.target.value)}
-          labelWidth="Country"
+          renderValue={() => <span>{country}</span>}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {COUNTRIES.map(country => (
+            <MenuItem key={country} value={country}>
+              {COUNTRY_FULL_NAME[country]}
+            </MenuItem>
+          ))}
         </Select>
-      </FormControl>
-    </div>
-  )
+      </Tooltip>
+      <Tooltip title="Colored">
+        <Switch
+          value={colored}
+          checked={colored}
+          color="default"
+          onChange={() => (colored ? setColored(false) : setColored(true))}
+        />
+      </Tooltip>
+    </Actions>
+  );
 };
 
 export default Header;
