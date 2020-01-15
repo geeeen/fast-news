@@ -11,11 +11,12 @@ export const getAllNews = (country, pageSize, searchString) => {
   ).then(result => result.data);
 };
 
-export const getTopNews = (country, pageSize, searchString) => {
+export const getTopNews = (country, pageSize, searchString, category) => {
   return Axios.get(
-    `https://newsapi.org/v2/top-headlines?country=${country}` +
-      (pageSize ? `&pageSize=${pageSize}` : "") +
-      (searchString ? `&q=${searchString}` : ""),
+    `https://newsapi.org/v2/top-headlines?pageSize=${pageSize}` +
+      (country !== "all" ? `&country=${country}` : "") +
+      (searchString ? `&q=${searchString}` : "") +
+      (category !== "All" ? `&category=${category}` : ""),
     {
       headers: { "X-Api-Key": API_KEY }
     }

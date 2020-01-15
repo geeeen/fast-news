@@ -5,12 +5,12 @@ import styled from "@emotion/styled";
 const StyledSpinner = styled.div`
   display: flex;
   justify-content: center;
-  margin: 50px;
+  margin: ${props => props.margin + "px"};
 `;
 
-const LoadingSpinner = ({ size = 40 }) => {
+const Spinner = ({ size = 40, margin = 0 }) => {
   return (
-    <StyledSpinner>
+    <StyledSpinner margin={margin}>
       <CircularProgress
         color={"inherit"}
         size={size}
@@ -20,4 +20,4 @@ const LoadingSpinner = ({ size = 40 }) => {
   );
 };
 
-export default LoadingSpinner;
+export default Spinner;

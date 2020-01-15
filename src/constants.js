@@ -2,7 +2,19 @@ export const API_KEY = "e81d8323c36b4293ad0e7598ce9a728f";
 
 export const PAGE_SIZES = [10, 20, 30, 40, 50, 100];
 
+export const CATEGORIES = [
+  "All",
+  "Business",
+  "Entertainment",
+  "General",
+  "Health",
+  "Science",
+  "Sports",
+  "Technology"
+];
+
 export const COUNTRIES = [
+  "all",
   "ae",
   "ar",
   "at",
@@ -60,6 +72,7 @@ export const COUNTRIES = [
 ];
 
 export const COUNTRY_FULL_NAME = {
+  all: "World",
   ae: "United Arab Emirates",
   ar: "Argentina",
   at: "Austria",
