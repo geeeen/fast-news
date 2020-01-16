@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getTopNews } from "../services/data-service";
 import Header from "./components/Header";
-import News from "./components/News";
+import NewsColumns from "./components/NewsColumns";
 import styled from "@emotion/styled";
-import Spinner from "./components/Spinner";
 import Footer from "./components/Footer";
-import Error from "./components/Error";
 
 const StyledMainPage = styled.div`
   margin: 1% 3%;
 `;
 
 const USER_LANG = navigator.language;
-
 const USER_COUNTRY = USER_LANG.replace(/(\w+-)/g, "").toLowerCase();
 
 const MainPage = () => {
@@ -55,6 +52,16 @@ const MainPage = () => {
       });
   }, [country, pageSize, searchString, category]);
 
+  // const clearDuplicates = news => {
+  //   let newsUrls = [];
+  //   return news.filter(el => {
+  //     if (!newsUrls.includes(el.url)) {
+  //       newsUrls.push(el.url);
+  //       return true;
+  //     }
+  //   })
+  // };
+
   const setCategoryWithLocalStorage = category => {
     localStorage.setItem("category", category);
     setCategory(category);
@@ -89,14 +96,12 @@ const MainPage = () => {
         colored={colored}
         setColored={setColoredWithLocalStorage}
       />
-      {newsLoading ? (
-        <Spinner size={150} margin={50} />
-      ) : newsError ? (
-        <Error error={newsError} colored={colored} />
-      ) : (
-        <News news={news} colored={colored} country={country} />
-        // <Spinner size={150} margin={50} />
-      )}
+      <NewsColumns
+        news={news}
+        colored={colored}
+        newsLoading={newsLoading}
+        newsError={newsError}
+      />
       <Footer />
     </StyledMainPage>
   );

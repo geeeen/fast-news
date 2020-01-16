@@ -20,7 +20,7 @@ const Link = styled.a`
 const Footer = () => {
   return (
     <StyledFooter>
-      Powered by<Link href={"https://newsapi.org/"}>NewsAPI</Link>
+      Used With<Link href={"https://newsapi.org/"}>NewsAPI</Link>
     </StyledFooter>
   );
 };

@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import NotFoundPage from "./pages/NonFoundPage";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
+import bg from "./resources/bg.png";
 
 const StyledAppBackground = styled.div`
   position: absolute;
@@ -13,7 +14,9 @@ const StyledAppBackground = styled.div`
   height: auto;
   min-width: 100%;
   min-height: 100%;
-  background: #c5bcb5;
+  background-image: url(${bg});
+  // background: #dfdfdf;
+  // background-image: url("http://api.thumbr.it/whitenoise-100x100.png?background=#dfdfdfff&noise=626262&density=20&opacity=30");
   opacity: 0.9;
   filter: alpha(opacity=90);
 `;

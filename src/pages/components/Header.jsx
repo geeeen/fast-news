@@ -33,7 +33,8 @@ const HeaderRow = styled.div`
 const Results = styled.div`
   display: flex;
   align-items: center;
-  width: 400px;
+  width: 100%;
+  max-width: 420px;
   min-width: 300px;
   @media (max-width: 1100px) {
     justify-content: center;
@@ -49,7 +50,8 @@ const HeaderTitle = styled.div`
 const Categories = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
+  width: 100%;
+  max-width: 420px;
   min-width: 300px;
   @media (max-width: 1100px) {
     justify-content: center;
@@ -73,7 +75,8 @@ const CurrentDate = styled.div`
 
 const Search = styled.div`
   display: flex;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   min-width: 300px;
 `;
 
@@ -206,6 +209,7 @@ const Header = ({
             <CustomSelect
               labelId="count-custom-select-label"
               id="count-custom-select"
+              MenuProps={{ disableScrollLock: true }}
               value={pageSize}
               onChange={event => setPageSize(event.target.value)}
             >
@@ -220,6 +224,7 @@ const Header = ({
             <CustomSelect
               labelId="country-custom-select-label"
               id="country-custom-select"
+              MenuProps={{ disableScrollLock: true }}
               value={country}
               onChange={event => setCountry(event.target.value)}
               renderValue={() => <span>{country}</span>}
