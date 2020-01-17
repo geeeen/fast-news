@@ -7,14 +7,12 @@ import {
   Tooltip,
   IconButton
 } from "@material-ui/core";
-import {
-  PAGE_SIZES,
-  COUNTRIES,
-  COUNTRY_FULL_NAME,
-  CATEGORIES
-} from "../../constants";
+import { PAGE_SIZES, COUNTRIES, CATEGORIES } from "../../constants";
 import { SearchRounded, ClearRounded } from "@material-ui/icons";
 import styled from "@emotion/styled";
+import gen from "../../resources/gen.png";
+import ru from "../../resources/ru.png";
+import usa from "../../resources/usa.png";
 import Spinner from "./Spinner";
 
 const HeaderRow = styled.div`
@@ -30,7 +28,7 @@ const HeaderRow = styled.div`
   }
 `;
 
-const Results = styled.div`
+const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -38,6 +36,9 @@ const Results = styled.div`
   min-width: 300px;
   @media (max-width: 1100px) {
     justify-content: center;
+  }
+  & img {
+    opacity: 0.7;
   }
 `;
 
@@ -66,11 +67,16 @@ const Category = styled.span`
   font-size: ${props => (props.bold ? "23px" : "21px")};
 `;
 
-const CurrentDate = styled.div`
+const DateAndResults = styled.div`
   display: flex;
   align-items: center;
   padding-top: 5px;
-  font-weight: bold;
+  & div {
+    font-weight: bold;
+  }
+  & span {
+    margin: 0 5px 0 15px;
+  }
 `;
 
 const Search = styled.div`
@@ -95,6 +101,10 @@ const StyledIconButton = styled(IconButton)`
 
 const Actions = styled.div`
   display: flex;
+`;
+
+const SelectLabel = styled.span`
+  margin: 10px 5px 0 0;
 `;
 
 const CustomSelect = styled(Select)`
@@ -140,20 +150,21 @@ const Header = ({
 }) => {
   const searchInput = useRef(undefined);
 
+  let logo = gen;
+  if (country === "ru") {
+    logo = ru;
+  }
+  if (country === "us") {
+    logo = usa;
+  }
+
   return (
     <>
       <HeaderRow>
-        <Tooltip title="Available News By Parameters" placement="top-start">
-          <Results>
-            News:{" "}
-            {totalResults !== undefined ? (
-              totalResults
-            ) : (
-              <Spinner size={20} margin={5} />
-            )}
-          </Results>
-        </Tooltip>
-        <HeaderTitle>{COUNTRY_FULL_NAME[country]}</HeaderTitle>
+        <StyledLogo>
+          <img src={logo} alt={"Logo"} />
+        </StyledLogo>
+        <HeaderTitle>{COUNTRIES[country]}</HeaderTitle>
         <Categories>
           {CATEGORIES.map(ctg => (
             <Category
@@ -167,7 +178,16 @@ const Header = ({
         </Categories>
       </HeaderRow>
       <HeaderRow>
-        <CurrentDate>{new Date().toLocaleDateString(country)}</CurrentDate>
+        <DateAndResults>
+          <div>{new Date().toLocaleDateString(country)}</div>
+
+          <span>Available: </span>
+          {totalResults !== undefined ? (
+            totalResults
+          ) : (
+            <Spinner size={20} margin={5} />
+          )}
+        </DateAndResults>
 
         <Search>
           <StyledInput
@@ -205,37 +225,35 @@ const Header = ({
         </Search>
 
         <Actions>
-          <Tooltip title="Displayed News" placement="left-end">
-            <CustomSelect
-              labelId="count-custom-select-label"
-              id="count-custom-select"
-              MenuProps={{ disableScrollLock: true }}
-              value={pageSize}
-              onChange={event => setPageSize(event.target.value)}
-            >
-              {PAGE_SIZES.map(size => (
-                <MenuItem key={size} value={size} dense>
-                  {size}
-                </MenuItem>
-              ))}
-            </CustomSelect>
-          </Tooltip>
-          <Tooltip title="Country" placement="top">
-            <CustomSelect
-              labelId="country-custom-select-label"
-              id="country-custom-select"
-              MenuProps={{ disableScrollLock: true }}
-              value={country}
-              onChange={event => setCountry(event.target.value)}
-              renderValue={() => <span>{country}</span>}
-            >
-              {COUNTRIES.map(country => (
-                <MenuItem key={country} value={country} dense>
-                  {COUNTRY_FULL_NAME[country]}
-                </MenuItem>
-              ))}
-            </CustomSelect>
-          </Tooltip>
+          <SelectLabel>Displayed:</SelectLabel>
+          <CustomSelect
+            labelId="count-custom-select-label"
+            id="count-custom-select"
+            MenuProps={{ disableScrollLock: true }}
+            value={pageSize}
+            onChange={event => setPageSize(event.target.value)}
+          >
+            {PAGE_SIZES.map(size => (
+              <MenuItem key={size} value={size} dense>
+                {size}
+              </MenuItem>
+            ))}
+          </CustomSelect>
+          <SelectLabel>Country:</SelectLabel>
+          <CustomSelect
+            labelId="country-custom-select-label"
+            id="country-custom-select"
+            MenuProps={{ disableScrollLock: true }}
+            value={country}
+            onChange={event => setCountry(event.target.value)}
+            renderValue={() => country}
+          >
+            {Object.keys(COUNTRIES).map(country => (
+              <MenuItem key={country} value={country} dense>
+                {COUNTRIES[country]}
+              </MenuItem>
+            ))}
+          </CustomSelect>
           <Tooltip title="Colored" placement="top">
             <CustomSwitch
               value={colored}

@@ -12,6 +12,7 @@ const Card = styled.div`
   align-items: center;
   border-bottom: 1px solid;
   padding: 5px;
+  word-break: break-word;
 `;
 
 const RelativeDiv = styled.div`

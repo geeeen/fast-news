@@ -9,29 +9,29 @@ const StyledMainPage = styled.div`
   margin: 1% 3%;
 `;
 
-const USER_LANG = navigator.language;
-const USER_COUNTRY = USER_LANG.replace(/(\w+-)/g, "").toLowerCase();
+const NAVIGATOR_LANG = navigator.language;
+const USER_COUNTRY = NAVIGATOR_LANG.replace(/(\w+-)/g, "").toLowerCase();
 
 const MainPage = () => {
   const lsCategory = localStorage.getItem("category");
   const lsPageSize = localStorage.getItem("pageSize");
-  const lsColored = localStorage.getItem("colored");
   const lsCountry = localStorage.getItem("country");
+  const lsColored = localStorage.getItem("colored");
   const [news, setNews] = useState(undefined);
+  const [newsLoading, setNewsLoading] = useState(true);
+  const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
   const [searchString, setSearchString] = useState(undefined);
   const [category, setCategory] = useState(lsCategory ? lsCategory : "All");
   const [pageSize, setPageSize] = useState(lsPageSize ? lsPageSize : 20);
-  const [colored, setColored] = useState(lsColored === "true");
   const [country, setCountry] = useState(lsCountry ? lsCountry : USER_COUNTRY);
-  const [newsLoading, setNewsLoading] = useState(true);
-  const [newsError, setNewsError] = useState(undefined);
+  const [colored, setColored] = useState(lsColored === "true");
 
   useEffect(() => {
     setNewsLoading(true);
     setTotalResults(undefined);
     setNewsError(undefined);
-    getTopNews(country, pageSize, searchString, category)
+    getTopNews(pageSize, country, searchString, category)
       .then(value => {
         setNews(value.articles);
         setTotalResults(value.totalResults);
@@ -51,16 +51,6 @@ const MainPage = () => {
         setNewsLoading(false);
       });
   }, [country, pageSize, searchString, category]);
-
-  // const clearDuplicates = news => {
-  //   let newsUrls = [];
-  //   return news.filter(el => {
-  //     if (!newsUrls.includes(el.url)) {
-  //       newsUrls.push(el.url);
-  //       return true;
-  //     }
-  //   })
-  // };
 
   const setCategoryWithLocalStorage = category => {
     localStorage.setItem("category", category);

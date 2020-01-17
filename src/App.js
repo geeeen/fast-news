@@ -15,8 +15,6 @@ const StyledAppBackground = styled.div`
   min-width: 100%;
   min-height: 100%;
   background-image: url(${bg});
-  // background: #dfdfdf;
-  // background-image: url("http://api.thumbr.it/whitenoise-100x100.png?background=#dfdfdfff&noise=626262&density=20&opacity=30");
   opacity: 0.9;
   filter: alpha(opacity=90);
 `;
