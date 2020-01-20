@@ -74,7 +74,11 @@ const Header = ({
     <>
       <HeaderRow>
         <StyledLogo>
-          <img src={gen} alt={"Logo"} />
+          <img
+            src={gen}
+            alt={"Logo"}
+            onClick={() => window.open("https://github.com/geeeen")}
+          />
         </StyledLogo>
 
         <HeaderTitle>{COUNTRIES[country]}</HeaderTitle>
