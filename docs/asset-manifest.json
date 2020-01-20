@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/fast-news/static/js/main.5b73ad3d.chunk.js",
-    "main.js.map": "/fast-news/static/js/main.5b73ad3d.chunk.js.map",
-    "runtime-main.js": "/fast-news/static/js/runtime-main.f47055af.js",
-    "runtime-main.js.map": "/fast-news/static/js/runtime-main.f47055af.js.map",
-    "static/js/2.0bbd0b8e.chunk.js": "/fast-news/static/js/2.0bbd0b8e.chunk.js",
-    "static/js/2.0bbd0b8e.chunk.js.map": "/fast-news/static/js/2.0bbd0b8e.chunk.js.map",
-    "index.html": "/fast-news/index.html",
-    "precache-manifest.bc9d291b8559554c0dbd07e8bd1e1318.js": "/fast-news/precache-manifest.bc9d291b8559554c0dbd07e8bd1e1318.js",
-    "service-worker.js": "/fast-news/service-worker.js",
-    "static/js/2.0bbd0b8e.chunk.js.LICENSE": "/fast-news/static/js/2.0bbd0b8e.chunk.js.LICENSE",
-    "static/media/350-50-30.png": "/fast-news/static/media/350-50-30.0c8d302e.png",
-    "static/media/bg.png": "/fast-news/static/media/bg.4060f2f4.png",
-    "static/media/cat.png": "/fast-news/static/media/cat.34f25b66.png",
-    "static/media/newspaper.jpg": "/fast-news/static/media/newspaper.06b3760c.jpg"
+    "main.js": "./static/js/main.f805133a.chunk.js",
+    "main.js.map": "./static/js/main.f805133a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.2f0fc54a.js",
+    "runtime-main.js.map": "./static/js/runtime-main.2f0fc54a.js.map",
+    "static/js/2.a75ebfed.chunk.js": "./static/js/2.a75ebfed.chunk.js",
+    "static/js/2.a75ebfed.chunk.js.map": "./static/js/2.a75ebfed.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.1928ed9688fa644671a86a9b256858eb.js": "./precache-manifest.1928ed9688fa644671a86a9b256858eb.js",
+    "service-worker.js": "./service-worker.js",
+    "static/js/2.a75ebfed.chunk.js.LICENSE": "./static/js/2.a75ebfed.chunk.js.LICENSE",
+    "static/media/350-50-30.png": "./static/media/350-50-30.0c8d302e.png",
+    "static/media/bg.png": "./static/media/bg.4060f2f4.png",
+    "static/media/cat.png": "./static/media/cat.34f25b66.png",
+    "static/media/newspaper.jpg": "./static/media/newspaper.06b3760c.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f47055af.js",
-    "static/js/2.0bbd0b8e.chunk.js",
-    "static/js/main.5b73ad3d.chunk.js"
+    "static/js/runtime-main.2f0fc54a.js",
+    "static/js/2.a75ebfed.chunk.js",
+    "static/js/main.f805133a.chunk.js"
   ]
 }
