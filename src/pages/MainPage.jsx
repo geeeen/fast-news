@@ -4,19 +4,23 @@ import Header from "./components/Header";
 import NewsColumns from "./components/NewsColumns";
 import styled from "@emotion/styled";
 import Footer from "./components/Footer";
+import {
+  LOCAL_STORAGE_CATEGORY_NAME,
+  LOCAL_STORAGE_COLORED_NAME,
+  LOCAL_STORAGE_COUNTRY_NAME,
+  LOCAL_STORAGE_PAGE_SIZE_NAME,
+  USER_COUNTRY
+} from "../constants";
 
 const StyledMainPage = styled.div`
   margin: 1% 3%;
 `;
 
-const NAVIGATOR_LANG = navigator.language;
-const USER_COUNTRY = NAVIGATOR_LANG.replace(/(\w+-)/g, "").toLowerCase();
-
 const MainPage = () => {
-  const lsCategory = localStorage.getItem("category");
-  const lsPageSize = localStorage.getItem("pageSize");
-  const lsCountry = localStorage.getItem("country");
-  const lsColored = localStorage.getItem("colored");
+  const lsCategory = localStorage.getItem(LOCAL_STORAGE_CATEGORY_NAME);
+  const lsPageSize = localStorage.getItem(LOCAL_STORAGE_PAGE_SIZE_NAME);
+  const lsCountry = localStorage.getItem(LOCAL_STORAGE_COUNTRY_NAME);
+  const lsColored = localStorage.getItem(LOCAL_STORAGE_COLORED_NAME);
   const [news, setNews] = useState(undefined);
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(undefined);
@@ -44,47 +48,55 @@ const MainPage = () => {
           error.response.data.code === "parametersMissing"
         ) {
           setNewsError("Set Country, Category or Search String");
-          setNewsLoading(false);
-          return;
+        } else {
+          setNewsError(error.toString());
         }
-        setNewsError(error.toString());
         setNewsLoading(false);
       });
   }, [country, pageSize, searchString, category]);
 
-  const setCategoryWithLocalStorage = category => {
-    localStorage.setItem("category", category);
-    setCategory(category);
-  };
-
-  const setPageSizeWithLocalStorage = pageSize => {
-    localStorage.setItem("pageSize", pageSize);
-    setPageSize(pageSize);
-  };
-
-  const setColoredWithLocalStorage = colored => {
-    localStorage.setItem("colored", colored);
-    setColored(colored);
-  };
-
-  const setCountryWithLocalStorage = country => {
-    localStorage.setItem("country", country);
-    setCountry(country);
+  const setStateWithLocalStorage = (name, value, setValueFunc) => {
+    localStorage.setItem(name, value);
+    setValueFunc(value);
   };
 
   return (
     <StyledMainPage>
       <Header
         totalResults={totalResults}
-        category={category}
-        setCategory={setCategoryWithLocalStorage}
         setSearchString={setSearchString}
+        category={category}
+        setCategory={category =>
+          setStateWithLocalStorage(
+            LOCAL_STORAGE_CATEGORY_NAME,
+            category,
+            setCategory
+          )
+        }
         pageSize={pageSize}
-        setPageSize={setPageSizeWithLocalStorage}
+        setPageSize={pageSize =>
+          setStateWithLocalStorage(
+            LOCAL_STORAGE_PAGE_SIZE_NAME,
+            pageSize,
+            setPageSize
+          )
+        }
         country={country}
-        setCountry={setCountryWithLocalStorage}
+        setCountry={country =>
+          setStateWithLocalStorage(
+            LOCAL_STORAGE_COUNTRY_NAME,
+            country,
+            setCountry
+          )
+        }
         colored={colored}
-        setColored={setColoredWithLocalStorage}
+        setColored={colored =>
+          setStateWithLocalStorage(
+            LOCAL_STORAGE_COLORED_NAME,
+            colored,
+            setColored
+          )
+        }
       />
       <NewsColumns
         news={news}

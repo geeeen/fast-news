@@ -1,5 +1,15 @@
 export const API_KEY = "e81d8323c36b4293ad0e7598ce9a728f";
 
+export const LOCAL_STORAGE_CATEGORY_NAME = "category";
+export const LOCAL_STORAGE_PAGE_SIZE_NAME = "pageSize";
+export const LOCAL_STORAGE_COUNTRY_NAME = "country";
+export const LOCAL_STORAGE_COLORED_NAME = "colored";
+
+const NAVIGATOR_LANG = navigator.language;
+export const USER_COUNTRY = NAVIGATOR_LANG
+  ? NAVIGATOR_LANG.replace(/(\w+-)/g, "").toLowerCase()
+  : "us";
+
 export const PAGE_SIZES = [10, 20, 30, 40, 50, 100];
 
 export const CATEGORIES = [
