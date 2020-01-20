@@ -41,6 +41,7 @@ const ImgFilter = styled.img`
 const Title = styled.h2`
   margin: 10px 0;
   cursor: pointer;
+  color: ${props => (props.colored ? "#00265a" : "")};
 `;
 
 const Description = styled.span`
@@ -76,7 +77,7 @@ const NewsCard = ({ news, colored }) => {
           <ImgFilter src={noise} onClick={() => window.open(news.url)} />
         </RelativeDiv>
       )}
-      <Title onClick={() => window.open(news.url)}>
+      <Title colored={colored} onClick={() => window.open(news.url)}>
         {removeSourceFromTitle(news.title)}
       </Title>
       <Description>{news.description}</Description>
