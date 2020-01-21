@@ -38,10 +38,12 @@ const ImgFilter = styled.img`
   height: 98%;
 `;
 
-const Title = styled.h2`
+const Title = styled.a`
   margin: 10px 0;
-  cursor: pointer;
-  color: ${props => (props.colored ? "#00265a" : "")};
+  text-decoration: unset;
+  font-weight: bold;
+  font-size: 24px;
+  color: ${props => (props.colored ? "#00265a" : "#2d2d2d")};
 `;
 
 const Description = styled.span`
@@ -74,10 +76,12 @@ const NewsCard = ({ news, colored }) => {
             alt={news.title}
             colored={colored}
           />
-          <ImgFilter src={noise} onClick={() => window.open(news.url)} />
+          <a href={news.url} target={"_blank"}>
+            <ImgFilter src={noise} />
+          </a>
         </RelativeDiv>
       )}
-      <Title colored={colored} onClick={() => window.open(news.url)}>
+      <Title colored={colored} href={news.url} target="_blank">
         {removeSourceFromTitle(news.title)}
       </Title>
       <Description>{news.description}</Description>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Link from "@material-ui/core/Link";
+import nf from "../resources/nf.png";
 
 const ErrorPage = styled.div`
   position: absolute;
@@ -16,13 +17,15 @@ const ErrorPage = styled.div`
 
 const StyledLink = styled(Link)`
   font-size: 25px;
+  margin-top: 30px !important;
 `;
 
 const NotFoundPage = () => {
   return (
     <ErrorPage>
       <h1>404 / Page Not Found!</h1>
-      <StyledLink href={`/`}>Go to Main Page</StyledLink>
+      <img src={nf} alt={"Not Found"} />
+      <StyledLink href={`/#/`}>Go to Main Page</StyledLink>
     </ErrorPage>
   );
 };
