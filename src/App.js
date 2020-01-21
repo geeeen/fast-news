@@ -1,8 +1,7 @@
 import React from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import NotFoundPage from "./pages/NonFoundPage";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import bg from "./resources/bg.png";
@@ -35,7 +34,7 @@ function App() {
       <HashRouter>
         <Switch>
           <Route path="/" component={MainPage} exact />
-          <Route path="/" component={NotFoundPage} />
+          <Redirect from="/" to="/" />
         </Switch>
       </HashRouter>
     </StyledAppBackground>
