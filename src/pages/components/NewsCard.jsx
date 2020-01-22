@@ -10,7 +10,6 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid;
   padding: 5px;
   word-break: break-word;
 `;
@@ -23,10 +22,6 @@ const StyledImg = styled.img`
   width: 100%;
   max-width: 700px;
   min-width: 200px;
-  filter: ${props =>
-    props.colored
-      ? "grayscale(0)"
-      : "grayscale(1) opacity(0.75) contrast(1.2)"};
 `;
 
 const ImgFilter = styled.img`
@@ -43,7 +38,7 @@ const Title = styled.a`
   text-decoration: unset;
   font-weight: bold;
   font-size: 24px;
-  color: ${props => (props.colored ? "#00265a" : "#2d2d2d")};
+  color: #00265a;
 `;
 
 const Description = styled.span`
@@ -57,7 +52,7 @@ const CardFooter = styled.div`
   width: 90%;
 `;
 
-const NewsCard = ({ news, colored }) => {
+const NewsCard = ({ news }) => {
   const removeSourceFromTitle = title => {
     return title.replace(/(\s-\s[^-]+$)/g, "");
   };
@@ -66,30 +61,26 @@ const NewsCard = ({ news, colored }) => {
     event.currentTarget.src = newspaperImage;
   };
 
+  const { url, urlToImage: image, title, description, source } = news;
   return (
-    <Card key={news.url}>
-      {news.urlToImage && (
+    <Card key={url}>
+      {image && (
         <RelativeDiv>
-          <StyledImg
-            src={news.urlToImage}
-            onError={setDefaultImage}
-            alt={news.title}
-            colored={colored}
-          />
-          <a href={news.url} target={"_blank"}>
+          <StyledImg src={image} onError={setDefaultImage} alt={title} />
+          <a href={url} target={"_blank"}>
             <ImgFilter src={noise} />
           </a>
         </RelativeDiv>
       )}
-      <Title colored={colored} href={news.url} target="_blank">
-        {removeSourceFromTitle(news.title)}
+      <Title href={url} target="_blank">
+        {removeSourceFromTitle(title)}
       </Title>
-      <Description>{news.description}</Description>
+      <Description>{description}</Description>
       <CardFooter>
         <Tooltip title="Copy URL" placement="top-start">
-          <FileCopy visibility={"hidden"} onClick={() => copy(news.url)} />
+          <FileCopy visibility={"hidden"} onClick={() => copy(url)} />
         </Tooltip>
-        <h4>{news.source.name}</h4>
+        <h4>{source.name}</h4>
       </CardFooter>
     </Card>
   );

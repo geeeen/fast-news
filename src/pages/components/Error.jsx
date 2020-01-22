@@ -10,10 +10,6 @@ const StyledError = styled.div`
   height: 600px;
   & img {
     width: 150px;
-    filter: ${props =>
-      props.colored
-        ? "grayscale(0)"
-        : "grayscale(1) opacity(0.8) contrast(1.5)"};
   }
   & span {
     margin-top: 20px;
@@ -21,9 +17,9 @@ const StyledError = styled.div`
   }
 `;
 
-const Error = ({ error, colored }) => {
+const Error = ({ error }) => {
   return (
-    <StyledError colored={colored}>
+    <StyledError>
       <img src={catImage} alt={"Empty"} />
       <span>{error}</span>
     </StyledError>

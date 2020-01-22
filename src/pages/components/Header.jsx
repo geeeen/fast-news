@@ -90,11 +90,7 @@ const Header = ({
         <DateAndResults>
           <div>{new Date().toLocaleDateString(country)}</div>
           <span>Available: </span>
-          {totalResults !== undefined ? (
-            totalResults
-          ) : (
-            <Spinner size={20} margin={5} />
-          )}
+          {totalResults !== undefined ? totalResults : <Spinner size={15} />}
         </DateAndResults>
 
         <Search setSearchString={setSearchString} />

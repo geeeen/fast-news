@@ -7,12 +7,23 @@ import Error from "./Error";
 
 const Columns = styled.div`
   display: flex;
+  > div {
+    border-right: 1px solid;
+  }
+  > div:last-child {
+    border-right: none;
+  }
 `;
 
 const Column = styled.div`
-  border-right: ${props => (props.rightBorder ? "1px solid" : "")};
   display: grid;
   width: auto;
+  > div {
+    border-bottom: 1px solid;
+  }
+  > div:last-child {
+    border-bottom: none;
+  }
 `;
 
 const EmptyNews = styled.div`
@@ -23,10 +34,6 @@ const EmptyNews = styled.div`
   height: 600px;
   & img {
     width: 150px;
-    filter: ${props =>
-      props.colored
-        ? "grayscale(0)"
-        : "grayscale(1) opacity(0.8) contrast(1.5)"};
   }
   & span {
     margin-top: 20px;
@@ -36,7 +43,7 @@ const EmptyNews = styled.div`
 
 const COLUMN_COUNT = Math.round(window.innerWidth / 400);
 
-const NewsColumns = ({ news, colored, newsLoading, newsError }) => {
+const NewsColumns = ({ news, newsLoading, newsError }) => {
   const columns = () => {
     let arr = [];
     for (let i = 0; i < COLUMN_COUNT; i++) {
@@ -61,22 +68,19 @@ const NewsColumns = ({ news, colored, newsLoading, newsError }) => {
   return newsLoading ? (
     <Spinner size={150} margin={50} />
   ) : newsError ? (
-    <Error error={newsError} colored={colored} />
+    <Error error={newsError} />
   ) : news.length > 0 ? (
     <Columns>
       {columns().map(column => (
-        <Column
-          key={column}
-          rightBorder={getNewsForColumn(column + 1).length !== 0}
-        >
+        <Column key={column}>
           {getNewsForColumn(column).map(news => (
-            <NewsCard key={news.url} news={news} colored={colored} />
+            <NewsCard key={news.url} news={news} />
           ))}
         </Column>
       ))}
     </Columns>
   ) : (
-    <EmptyNews colored={colored}>
+    <EmptyNews>
       <img src={slothImage} alt={"Empty"} />
       <span>News Not Found</span>
     </EmptyNews>

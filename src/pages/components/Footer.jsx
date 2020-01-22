@@ -7,12 +7,14 @@ const StyledFooter = styled.div`
   align-items: center;
   height: 30px;
   padding: 0 10px;
+  border-top: 1px solid;
   border-bottom: 1px solid;
 `;
 
 const Link = styled.a`
   margin-left: 5px;
   color: black;
+  font-weight: bold;
   text-decoration: unset;
   cursor: pointer;
 `;

@@ -14,6 +14,8 @@ import {
 
 const StyledMainPage = styled.div`
   margin: 1% 3%;
+  filter: ${props =>
+    props.colored ? "grayscale(0)" : "grayscale(1) opacity(0.8) contrast(1.2)"};
 `;
 
 const MainPage = () => {
@@ -61,7 +63,7 @@ const MainPage = () => {
   };
 
   return (
-    <StyledMainPage>
+    <StyledMainPage colored={colored}>
       <Header
         totalResults={totalResults}
         setSearchString={setSearchString}
@@ -100,7 +102,6 @@ const MainPage = () => {
       />
       <NewsColumns
         news={news}
-        colored={colored}
         newsLoading={newsLoading}
         newsError={newsError}
       />
