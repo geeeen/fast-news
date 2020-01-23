@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import styled from "@emotion/styled";
 import bg from "./resources/bg.png";
@@ -24,7 +30,12 @@ const StyledAppBackground = styled.div`
 function App() {
   return (
     <StyledAppBackground>
-      <MainPage />
+      <Router>
+        <Switch>
+          <Route path="/" component={MainPage} exact />
+          <Redirect from="/" to="/" />
+        </Switch>
+      </Router>
     </StyledAppBackground>
   );
 }
