@@ -8,10 +8,11 @@ import Error from "./Error";
 const Columns = styled.div`
   display: flex;
   > div {
-    border-right: 1px solid;
+    border-left: 1px solid;
   }
-  > div:last-child {
-    border-right: none;
+  > div:first-of-type,
+  > div:empty {
+    border-left: none;
   }
 `;
 

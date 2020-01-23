@@ -16,7 +16,7 @@ const HeaderRow = styled.div`
   flex-wrap: wrap;
   padding: 0 10px;
   border-bottom: 1px solid;
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     justify-content: center;
     flex-direction: column;
   }
@@ -28,7 +28,7 @@ const StyledLogo = styled.div`
   width: 100%;
   max-width: 420px;
   min-width: 300px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     justify-content: center;
   }
   & img {

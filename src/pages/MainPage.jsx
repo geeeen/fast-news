@@ -4,13 +4,7 @@ import Header from "./components/Header";
 import NewsColumns from "./components/NewsColumns";
 import styled from "@emotion/styled";
 import Footer from "./components/Footer";
-import {
-  LOCAL_STORAGE_CATEGORY_NAME,
-  LOCAL_STORAGE_COLORED_NAME,
-  LOCAL_STORAGE_COUNTRY_NAME,
-  LOCAL_STORAGE_PAGE_SIZE_NAME,
-  USER_COUNTRY
-} from "../constants";
+import { USER_COUNTRY } from "../constants";
 
 const StyledMainPage = styled.div`
   margin: 1% 3%;
@@ -18,33 +12,32 @@ const StyledMainPage = styled.div`
     props.colored ? "grayscale(0)" : "grayscale(1) opacity(0.8) contrast(1.2)"};
 `;
 
+const LS_PARAMS_NAME = "params";
+
 const MainPage = () => {
-  const lsCategory = localStorage.getItem(LOCAL_STORAGE_CATEGORY_NAME);
-  const lsPageSize = localStorage.getItem(LOCAL_STORAGE_PAGE_SIZE_NAME);
-  const lsCountry = localStorage.getItem(LOCAL_STORAGE_COUNTRY_NAME);
-  const lsColored = localStorage.getItem(LOCAL_STORAGE_COLORED_NAME);
+  const params = localStorage.getItem(LS_PARAMS_NAME);
+  const pArr = params ? params.split(",") : undefined;
   const [news, setNews] = useState(undefined);
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
   const [searchString, setSearchString] = useState(undefined);
-  const [category, setCategory] = useState(lsCategory ? lsCategory : "All");
-  const [pageSize, setPageSize] = useState(lsPageSize ? lsPageSize : 20);
-  const [country, setCountry] = useState(lsCountry ? lsCountry : USER_COUNTRY);
-  const [colored, setColored] = useState(lsColored === "true");
+  const [category, setCategory] = useState(pArr ? pArr[0] : "All");
+  const [pageSize, setPageSize] = useState(pArr ? pArr[1] : 20);
+  const [country, setCountry] = useState(pArr ? pArr[2] : USER_COUNTRY);
+  const [colored, setColored] = useState(pArr ? pArr[3] === "true" : false);
 
   useEffect(() => {
     setNewsLoading(true);
     setTotalResults(undefined);
     setNewsError(undefined);
     getTopNews(pageSize, country, searchString, category)
-      .then(value => {
-        setNews(value.articles);
-        setTotalResults(value.totalResults);
+      .then(({ articles, totalResults }) => {
+        setNews(articles);
+        setTotalResults(totalResults);
         setNewsLoading(false);
       })
       .catch(error => {
-        setTotalResults(0);
         if (
           error.response &&
           error.response.data.code === "parametersMissing"
@@ -53,13 +46,16 @@ const MainPage = () => {
         } else {
           setNewsError(error.toString());
         }
+        setTotalResults(0);
         setNewsLoading(false);
       });
   }, [country, pageSize, searchString, category]);
 
-  const setStateWithLocalStorage = (name, value, setValueFunc) => {
-    localStorage.setItem(name, value);
-    setValueFunc(value);
+  window.onunload = () => {
+    localStorage.setItem(
+      LS_PARAMS_NAME,
+      [category, pageSize, country, colored].join(",")
+    );
   };
 
   return (
@@ -68,37 +64,13 @@ const MainPage = () => {
         totalResults={totalResults}
         setSearchString={setSearchString}
         category={category}
-        setCategory={category =>
-          setStateWithLocalStorage(
-            LOCAL_STORAGE_CATEGORY_NAME,
-            category,
-            setCategory
-          )
-        }
+        setCategory={setCategory}
         pageSize={pageSize}
-        setPageSize={pageSize =>
-          setStateWithLocalStorage(
-            LOCAL_STORAGE_PAGE_SIZE_NAME,
-            pageSize,
-            setPageSize
-          )
-        }
+        setPageSize={setPageSize}
         country={country}
-        setCountry={country =>
-          setStateWithLocalStorage(
-            LOCAL_STORAGE_COUNTRY_NAME,
-            country,
-            setCountry
-          )
-        }
+        setCountry={setCountry}
         colored={colored}
-        setColored={colored =>
-          setStateWithLocalStorage(
-            LOCAL_STORAGE_COLORED_NAME,
-            colored,
-            setColored
-          )
-        }
+        setColored={setColored}
       />
       <NewsColumns
         news={news}

@@ -1,10 +1,8 @@
 import React from "react";
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import bg from "./resources/bg.png";
+import SpecialElite from "./resources/fonts/Special_Elite/Regular.ttf";
 
 const StyledAppBackground = styled.div`
   position: absolute;
@@ -15,28 +13,18 @@ const StyledAppBackground = styled.div`
   min-width: 100%;
   min-height: 100%;
   background-image: url(${bg});
-  opacity: 0.9;
-  filter: alpha(opacity=90);
+  opacity: 0.95;
+  @font-face {
+    font-family: "Special Elite";
+    src: url(${SpecialElite});
+  }
+  font-family: "Special Elite", cursive;
 `;
 
 function App() {
   return (
     <StyledAppBackground>
-      <Global
-        styles={css`
-          body {
-            margin: 0;
-            color: #2d2d2d;
-            font-family: "Special Elite", cursive;
-          }
-        `}
-      />
-      <HashRouter>
-        <Switch>
-          <Route path="/" component={MainPage} exact />
-          <Redirect from="/" to="/" />
-        </Switch>
-      </HashRouter>
+      <MainPage />
     </StyledAppBackground>
   );
 }

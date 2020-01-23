@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Tooltip } from "@material-ui/core";
-import { FileCopy } from "@material-ui/icons";
-import copy from "copy-to-clipboard";
 import newspaperImage from "../../resources/newspaper.jpg";
 import noise from "../../resources/350-50-30.png";
 
@@ -20,8 +17,8 @@ const RelativeDiv = styled.div`
 
 const StyledImg = styled.img`
   width: 100%;
-  max-width: 700px;
-  min-width: 200px;
+  max-width: 500px;
+  min-width: 250px;
 `;
 
 const ImgFilter = styled.img`
@@ -34,7 +31,7 @@ const ImgFilter = styled.img`
 `;
 
 const Title = styled.a`
-  margin: 10px 0;
+  margin: 5px 0;
   text-decoration: unset;
   font-weight: bold;
   font-size: 24px;
@@ -45,10 +42,9 @@ const Description = styled.span`
   text-align: justify;
 `;
 
-const CardFooter = styled.div`
+const Source = styled.h4`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   width: 90%;
 `;
 
@@ -66,8 +62,8 @@ const NewsCard = ({ news }) => {
     <Card key={url}>
       {image && (
         <RelativeDiv>
-          <StyledImg src={image} onError={setDefaultImage} alt={title} />
           <a href={url} target={"_blank"}>
+            <StyledImg src={image} onError={setDefaultImage} alt={title} />
             <ImgFilter src={noise} />
           </a>
         </RelativeDiv>
@@ -76,12 +72,7 @@ const NewsCard = ({ news }) => {
         {removeSourceFromTitle(title)}
       </Title>
       <Description>{description}</Description>
-      <CardFooter>
-        <Tooltip title="Copy URL" placement="top-start">
-          <FileCopy visibility={"hidden"} onClick={() => copy(url)} />
-        </Tooltip>
-        <h4>{source.name}</h4>
-      </CardFooter>
+      <Source>{source.name}</Source>
     </Card>
   );
 };

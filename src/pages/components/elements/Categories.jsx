@@ -8,7 +8,7 @@ const StyledCategories = styled.div`
   width: 100%;
   max-width: 420px;
   min-width: 300px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     justify-content: center;
     padding-bottom: 15px;
   }
