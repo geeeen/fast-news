@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import newspaperImage from "../../resources/newspaper.jpg";
 import noise from "../../resources/350-50-30.png";
+import spinner from "../../resources/spinner.gif";
+import yall from "yall-js";
 
 const Card = styled.div`
   display: flex;
@@ -17,7 +19,7 @@ const RelativeDiv = styled.div`
 
 const StyledImg = styled.img`
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   min-width: 250px;
 `;
 
@@ -48,6 +50,12 @@ const Source = styled.h4`
   width: 90%;
 `;
 
+document.addEventListener("DOMContentLoaded", function() {
+  yall({
+    observeChanges: true
+  });
+});
+
 const NewsCard = ({ news }) => {
   const removeSourceFromTitle = title => {
     return title.replace(/(\s-\s[^-]+$)/g, "");
@@ -63,7 +71,13 @@ const NewsCard = ({ news }) => {
       {image && (
         <RelativeDiv>
           <a href={url} target={"_blank"}>
-            <StyledImg src={image} onError={setDefaultImage} alt={title} />
+            <StyledImg
+              className={"lazy"}
+              src={spinner}
+              data-src={image}
+              onError={setDefaultImage}
+              alt={title}
+            />
             <ImgFilter src={noise} />
           </a>
         </RelativeDiv>

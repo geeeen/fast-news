@@ -17,7 +17,6 @@ const Columns = styled.div`
 `;
 
 const Column = styled.div`
-  display: grid;
   width: auto;
   > div {
     border-bottom: 1px solid;
