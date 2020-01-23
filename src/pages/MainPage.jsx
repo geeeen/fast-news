@@ -14,6 +14,8 @@ const StyledMainPage = styled.div`
 
 const LS_PARAMS_NAME = "params";
 
+const COLUMN_COUNT = Math.round(window.innerWidth / 400);
+
 const MainPage = () => {
   const params = localStorage.getItem(LS_PARAMS_NAME);
   const pArr = params ? params.split(",") : undefined;
@@ -26,6 +28,7 @@ const MainPage = () => {
   const [pageSize, setPageSize] = useState(pArr ? pArr[1] : 20);
   const [country, setCountry] = useState(pArr ? pArr[2] : USER_COUNTRY);
   const [colored, setColored] = useState(pArr ? pArr[3] === "true" : false);
+  const [columnCount, setColumnCount] = useState(COLUMN_COUNT);
 
   useEffect(() => {
     setNewsLoading(true);
@@ -58,6 +61,10 @@ const MainPage = () => {
     );
   };
 
+  window.onresize = () => {
+    setColumnCount(Math.round(window.innerWidth / 400));
+  };
+
   return (
     <StyledMainPage colored={colored}>
       <Header
@@ -76,6 +83,7 @@ const MainPage = () => {
         news={news}
         newsLoading={newsLoading}
         newsError={newsError}
+        columnCount={columnCount}
       />
       <Footer />
     </StyledMainPage>

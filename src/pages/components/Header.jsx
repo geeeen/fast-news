@@ -13,7 +13,6 @@ const HeaderRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   padding: 0 10px;
   border-bottom: 1px solid;
   @media (max-width: 1300px) {

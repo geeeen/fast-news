@@ -42,26 +42,17 @@ const EmptyNews = styled.div`
   }
 `;
 
-const COLUMN_COUNT = Math.round(window.innerWidth / 400);
-
-const NewsColumns = ({ news, newsLoading, newsError }) => {
+const NewsColumns = ({ news, newsLoading, newsError, columnCount }) => {
   const columns = () => {
-    let arr = [];
-    for (let i = 0; i < COLUMN_COUNT; i++) {
-      arr.push(i);
-    }
-    return arr;
+    return Array.from({ length: columnCount }, (v, i) => i);
   };
 
   const getNewsForColumn = columnNumber => {
-    if (columnNumber === COLUMN_COUNT) return [];
-    let lastColumnNews = news[columnNumber];
-    let newsNumber = columnNumber + COLUMN_COUNT;
     let resultArr = [];
-    while (lastColumnNews) {
-      resultArr.push(lastColumnNews);
-      lastColumnNews = news[newsNumber];
-      newsNumber += COLUMN_COUNT;
+    let newsNumber = columnNumber;
+    while (newsNumber < news.length) {
+      resultArr.push(news[newsNumber]);
+      newsNumber += columnCount;
     }
     return resultArr;
   };
