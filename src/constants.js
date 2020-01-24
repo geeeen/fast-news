@@ -8,7 +8,6 @@ export const USER_COUNTRY = NAVIGATOR_LANG
 export const PAGE_SIZES = [10, 20, 30, 40, 50];
 
 export const CATEGORIES = [
-  "All",
   "Business",
   "Entertainment",
   "General",
@@ -29,7 +28,7 @@ export const COUNTRIES = {
   br: "Brazil",
   ca: "Canada",
   ch: "Switzerland",
-  cn: "People’s Republic of China",
+  cn: "China",
   co: "Colombia",
   cu: "Cuba",
   cz: "Czech Republic",

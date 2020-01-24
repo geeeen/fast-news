@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import newspaperImage from "../../resources/newspaper.jpg";
 import noise from "../../resources/350-50-30.png";
-import spinner from "../../resources/spinner.gif";
+import spinner from "../../resources/gen_spinner.gif";
 import yall from "yall-js";
 
 const Card = styled.div`

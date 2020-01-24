@@ -24,7 +24,7 @@ const MainPage = () => {
   const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
   const [searchString, setSearchString] = useState(undefined);
-  const [category, setCategory] = useState(pArr ? pArr[0] : "All");
+  const [category, setCategory] = useState(pArr ? pArr[0] : "General");
   const [pageSize, setPageSize] = useState(pArr ? pArr[1] : 20);
   const [country, setCountry] = useState(pArr ? pArr[2] : USER_COUNTRY);
   const [colored, setColored] = useState(pArr ? pArr[3] === "true" : false);

@@ -25,8 +25,7 @@ const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 420px;
-  min-width: 300px;
+  max-width: 480px;
   @media (max-width: 1300px) {
     justify-content: center;
   }

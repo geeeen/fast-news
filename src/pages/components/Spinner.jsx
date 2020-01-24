@@ -12,7 +12,7 @@ const Spinner = ({ size = 40, margin = 0 }) => {
   return (
     <StyledSpinner margin={margin}>
       <CircularProgress
-        color={"inherit"}
+        color={"primary"}
         size={size}
         thickness={Math.sqrt(size) - Math.sqrt(size) / 2}
       />
