@@ -20,6 +20,7 @@ const Link = styled.a`
 `;
 
 const Footer = () => {
+
   return (
     <StyledFooter>
       Used With<Link href={"https://newsapi.org/"}>NewsAPI</Link>

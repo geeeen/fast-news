@@ -8,9 +8,6 @@
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -18,11 +15,25 @@
     "react-scripts": "3.3.0",
     "yall-js": "^3.1.7"
   },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest-emotion": "^10.0.27",
+    "react-test-renderer": "^16.12.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      ".*/index\\.js"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

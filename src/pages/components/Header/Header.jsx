@@ -1,13 +1,13 @@
 import React from "react";
 import { Tooltip } from "@material-ui/core";
-import { PAGE_SIZES, COUNTRIES } from "../../constants";
+import { PAGE_SIZES, COUNTRIES } from "../../../constants";
 import styled from "@emotion/styled";
-import gen from "../../resources/gen.png";
-import Spinner from "./Spinner";
-import CustomSwitch from "./elements/CustomSwitch";
-import CustomSelect from "./elements/CustomSelect";
-import Search from "./elements/Search";
-import Categories from "./elements/Categories";
+import gen from "../../../resources/gen.png";
+import Spinner from "../Spinner";
+import CustomSwitch from "./components/CustomSwitch";
+import CustomSelect from "./components/CustomSelect";
+import Search from "./components/Search";
+import Categories from "./components/Categories";
 
 const HeaderRow = styled.div`
   display: flex;
@@ -56,6 +56,10 @@ const Actions = styled.div`
   display: flex;
 `;
 
+const SelectLabel = styled.span`
+  margin: 10px 5px 0 0;
+`;
+
 const Header = ({
   totalResults,
   category,
@@ -72,11 +76,9 @@ const Header = ({
     <>
       <HeaderRow>
         <StyledLogo>
-          <img
-            src={gen}
-            alt={"Logo"}
-            onClick={() => window.open("https://github.com/geeeen")}
-          />
+          <a href={"https://github.com/geeeen"} target={"_blank"}>
+            <img src={gen} alt={"Logo"} />
+          </a>
         </StyledLogo>
 
         <HeaderTitle>{COUNTRIES[country]}</HeaderTitle>
@@ -94,21 +96,21 @@ const Header = ({
         <Search setSearchString={setSearchString} />
 
         <Actions>
+          <SelectLabel>Displayed:</SelectLabel>
           <CustomSelect
-            label={"Displayed"}
+            id={"displayedCustomSelect"}
             value={pageSize}
             setValue={setPageSize}
             renderFunction={undefined}
-            isArray={true}
             values={PAGE_SIZES}
           />
 
+          <SelectLabel>Country:</SelectLabel>
           <CustomSelect
-            label={"Country"}
+            id={"countryCustomSelect"}
             value={country}
             setValue={setCountry}
             renderFunction={() => country}
-            isArray={false}
             values={COUNTRIES}
           />
 

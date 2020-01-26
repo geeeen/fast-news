@@ -1,8 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { shallow } from "enzyme";
 import App from "./App";
+import { GET_USER_COUNTRY } from "./constants";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
+describe("Shallow renders", () => {
+  it("Render", () => {
+    shallow(<App />);
+  });
+
+  it("Constants file", () => {
+    expect(GET_USER_COUNTRY()).toEqual("us");
+    expect(GET_USER_COUNTRY("Ru-ru")).toEqual("ru");
+  });
 });

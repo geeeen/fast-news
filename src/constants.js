@@ -1,9 +1,12 @@
 export const API_KEY = "e81d8323c36b4293ad0e7598ce9a728f";
 
-const NAVIGATOR_LANG = navigator.language;
-export const USER_COUNTRY = NAVIGATOR_LANG
-  ? NAVIGATOR_LANG.replace(/(\w+-)/g, "").toLowerCase()
-  : "us";
+export const GET_NAVIGATOR_LANG = () => navigator.language;
+export const GET_USER_COUNTRY = nav_lang =>
+  nav_lang ? nav_lang.replace(/(\w+-)/g, "").toLowerCase() : "us";
+
+export const LS_PARAMS_NAME = "params";
+
+export const COLUMN_COUNT = Math.round(window.innerWidth / 400);
 
 export const PAGE_SIZES = [10, 20, 30, 40, 50];
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import catImage from "../../resources/cat.png";
+import catImage from "../../../resources/cat.png";
 
 const StyledError = styled.div`
   display: flex;

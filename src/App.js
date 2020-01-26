@@ -19,7 +19,7 @@ const StyledAppBackground = styled.div`
   min-width: 100%;
   min-height: 100%;
   background-image: url(${bg});
-  opacity: 0.95;
+  opacity: 0.9;
   @font-face {
     font-family: "Special Elite";
     src: url(${SpecialElite});

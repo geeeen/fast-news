@@ -2,10 +2,6 @@ import React from "react";
 import { MenuItem, Select } from "@material-ui/core";
 import styled from "@emotion/styled";
 
-const SelectLabel = styled.span`
-  margin: 10px 5px 0 0;
-`;
-
 const StyledSelect = styled(Select)`
   margin-right: 15px;
   font-family: inherit !important;
@@ -27,33 +23,27 @@ const StyledSelect = styled(Select)`
 `;
 
 const CustomSelect = ({
-  label,
   value,
   setValue,
   renderFunction,
-  isArray,
   values
 }) => {
+  const isArray = !!values.length;
   const menuItems = isArray ? values : Object.keys(values);
 
   return (
-    <>
-      <SelectLabel>{label}:</SelectLabel>
-      <StyledSelect
-        labelId={`${label}-custom-select-label`}
-        id={`${label}-custom-select`}
-        MenuProps={{ disableScrollLock: true }}
-        value={value}
-        onChange={event => setValue(event.target.value)}
-        renderValue={renderFunction}
-      >
-        {menuItems.map(item => (
-          <MenuItem key={item} value={item} dense>
-            {isArray ? item : values[item]}
-          </MenuItem>
-        ))}
-      </StyledSelect>
-    </>
+    <StyledSelect
+      MenuProps={{ disableScrollLock: true }}
+      value={value}
+      onChange={event => setValue(event.target.value)}
+      renderValue={renderFunction}
+    >
+      {menuItems.map(item => (
+        <MenuItem key={item} value={item} dense>
+          {isArray ? item : values[item]}
+        </MenuItem>
+      ))}
+    </StyledSelect>
   );
 };
 

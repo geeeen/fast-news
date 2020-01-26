@@ -24,38 +24,43 @@ const StyledIconButton = styled(IconButton)`
 `;
 
 const Search = ({ setSearchString }) => {
-  const searchInput = useRef(undefined);
+  const searchInput = useRef();
+
+  const clearInput = () => {
+    setSearchString(undefined);
+    searchInput.current.value = "";
+  };
 
   return (
     <StyledSearch>
       <StyledInput
+        id={"input"}
         inputRef={searchInput}
         disableUnderline
         placeholder="Search..."
+        onKeyDown={event =>
+          event.keyCode === 13 ? setSearchString(event.target.value) : undefined
+        }
+        onChange={event =>
+          event.target.value === "" ? setSearchString(undefined) : undefined
+        }
         endAdornment={
           <>
             <StyledIconButton
+              id={"clearRounded"}
               aria-label="search"
-              onClick={() => {
-                setSearchString(undefined);
-                searchInput.current.value = "";
-              }}
+              onClick={() => clearInput()}
             >
               <ClearRounded />
             </StyledIconButton>
             <StyledIconButton
+              id={"searchRounded"}
               aria-label="search"
               onClick={() => setSearchString(searchInput.current.value)}
             >
               <SearchRounded />
             </StyledIconButton>
           </>
-        }
-        onKeyDown={event =>
-          event.keyCode === 13 ? setSearchString(event.target.value) : undefined
-        }
-        onChange={event =>
-          event.target.value === "" ? setSearchString(undefined) : undefined
         }
       />
     </StyledSearch>

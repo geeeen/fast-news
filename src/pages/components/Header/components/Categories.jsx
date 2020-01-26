@@ -1,5 +1,5 @@
 import React from "react";
-import { CATEGORIES } from "../../../constants";
+import { CATEGORIES } from "../../../../constants";
 import styled from "@emotion/styled";
 
 const StyledCategories = styled.div`
@@ -26,6 +26,7 @@ const Categories = ({ category, setCategory }) => {
     <StyledCategories>
       {CATEGORIES.map(ctg => (
         <Category
+          id={ctg}
           key={ctg}
           bold={ctg === category}
           onClick={() => setCategory(ctg)}

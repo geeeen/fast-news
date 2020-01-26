@@ -2,31 +2,37 @@ import React, { useEffect, useState } from "react";
 import { getTopNews } from "../services/data-service";
 import Header from "./components/Header";
 import NewsColumns from "./components/NewsColumns";
-import styled from "@emotion/styled";
 import Footer from "./components/Footer";
-import { USER_COUNTRY } from "../constants";
+import yall from "yall-js";
+import styled from "@emotion/styled";
+import {
+  COLUMN_COUNT,
+  GET_USER_COUNTRY,
+  GET_NAVIGATOR_LANG,
+  LS_PARAMS_NAME
+} from "../constants";
 
-const StyledMainPage = styled.div`
+export const StyledMainPage = styled.div`
   margin: 1% 3%;
   filter: ${props =>
-    props.colored ? "grayscale(0)" : "grayscale(1) opacity(0.8) contrast(1.2)"};
+    props.colored
+      ? "grayscale(0)"
+      : "grayscale(1) opacity(0.75) contrast(1.2)"};
 `;
-
-const LS_PARAMS_NAME = "params";
-
-const COLUMN_COUNT = Math.round(window.innerWidth / 400);
 
 const MainPage = () => {
   const params = localStorage.getItem(LS_PARAMS_NAME);
   const pArr = params ? params.split(",") : undefined;
-  const [news, setNews] = useState(undefined);
+  const [news, setNews] = useState([]);
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
   const [searchString, setSearchString] = useState(undefined);
   const [category, setCategory] = useState(pArr ? pArr[0] : "General");
   const [pageSize, setPageSize] = useState(pArr ? pArr[1] : 20);
-  const [country, setCountry] = useState(pArr ? pArr[2] : USER_COUNTRY);
+  const [country, setCountry] = useState(
+    pArr ? pArr[2] : GET_USER_COUNTRY(GET_NAVIGATOR_LANG())
+  );
   const [colored, setColored] = useState(pArr ? pArr[3] === "true" : false);
   const [columnCount, setColumnCount] = useState(COLUMN_COUNT);
 
@@ -51,19 +57,29 @@ const MainPage = () => {
         }
         setTotalResults(0);
         setNewsLoading(false);
+        setNews([]);
       });
   }, [country, pageSize, searchString, category]);
 
-  window.onunload = () => {
+  useEffect(() => {
+    document.addEventListener(
+      "DOMContentLoaded",
+      yall({
+        observeChanges: true
+      })
+    );
+  }, []);
+
+  window.addEventListener("unload", () => {
     localStorage.setItem(
       LS_PARAMS_NAME,
       [category, pageSize, country, colored].join(",")
     );
-  };
+  });
 
-  window.onresize = () => {
+  window.addEventListener("resize", () => {
     setColumnCount(Math.round(window.innerWidth / 400));
-  };
+  });
 
   return (
     <StyledMainPage colored={colored}>

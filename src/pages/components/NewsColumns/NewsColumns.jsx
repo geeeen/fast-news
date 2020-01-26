@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import slothImage from "../../resources/sloth.png";
-import NewsCard from "./NewsCard";
-import Spinner from "./Spinner";
-import Error from "./Error";
+import slothImage from "../../../resources/sloth.png";
+import NewsCard from "../NewsCard";
+import Spinner from "../Spinner";
+import Error from "../Error";
+
+const RelativeDiv = styled.div`
+  position: relative;
+`;
 
 const Columns = styled.div`
   display: flex;
@@ -56,20 +60,23 @@ const NewsColumns = ({ news, newsLoading, newsError, columnCount }) => {
     return resultArr;
   };
 
-  return newsLoading ? (
-    <Spinner size={150} margin={50} />
-  ) : newsError ? (
+  return newsError ? (
     <Error error={newsError} />
-  ) : news.length > 0 ? (
-    <Columns>
-      {columns().map(column => (
-        <Column key={column}>
-          {getNewsForColumn(column).map(news => (
-            <NewsCard key={news.url} news={news} />
-          ))}
-        </Column>
-      ))}
-    </Columns>
+  ) : news && news.length > 0 ? (
+    <RelativeDiv>
+      {newsLoading && <Spinner size={150} padding={150} posAbsolute={true} />}
+      <Columns>
+        {columns().map(column => (
+          <Column key={column}>
+            {getNewsForColumn(column).map(news => (
+              <NewsCard key={news.url} news={news} />
+            ))}
+          </Column>
+        ))}
+      </Columns>
+    </RelativeDiv>
+  ) : newsLoading ? (
+    <Spinner size={150} padding={100} />
   ) : (
     <EmptyNews>
       <img src={slothImage} alt={"Empty"} />
