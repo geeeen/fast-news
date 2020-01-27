@@ -20,7 +20,7 @@ describe("Shallow renders StyledMainPage", () => {
     await act(async () => window.dispatchEvent(new Event("unload")));
   });
 
-  it("Properties and s", () => {
+  it("Properties", () => {
     axios.get.mockResolvedValue();
     const mainPage = mount(<MainPage />);
 
