@@ -1,6 +1,6 @@
-import { shallow } from "enzyme";
 import React from "react";
-import CustomSwitch from "./CustomSwitch";
+import { shallow } from "enzyme";
+import CustomSwitch from "../../../../pages/components/Header/components/CustomSwitch";
 
 describe("Shallow renders CustomSwitch", () => {
   it("Render", () => {

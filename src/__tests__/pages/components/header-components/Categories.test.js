@@ -1,8 +1,9 @@
-import { mount, shallow } from "enzyme";
 import React from "react";
-import Categories from "./Categories";
+import { mount, shallow } from "enzyme";
+import Categories from "../../../../pages/components/Header/components/Categories";
 import { CATEGORIES } from "../../../../constants";
 import { matchers } from "jest-emotion";
+
 expect.extend(matchers);
 
 describe("Shallow renders Categories", () => {

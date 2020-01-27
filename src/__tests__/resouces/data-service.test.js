@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { getTopNews } from "./data-service";
+import { getTopNews } from "../../services/data-service";
 
 jest.mock("axios");
 

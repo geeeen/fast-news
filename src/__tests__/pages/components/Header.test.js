@@ -1,6 +1,6 @@
-import { mount, shallow } from "enzyme";
 import React from "react";
-import Header from "./Header";
+import { mount, shallow } from "enzyme";
+import Header from "../../../pages/components/Header/Header";
 
 describe("Shallow renders Header", () => {
   it("Render", () => {

@@ -1,6 +1,6 @@
-import { shallow } from "enzyme";
 import React from "react";
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "../../../../pages/components/Header/components/CustomSelect";
+import { shallow } from "enzyme";
 import { COUNTRIES, PAGE_SIZES } from "../../../../constants";
 
 describe("Shallow renders CustomSelect", () => {

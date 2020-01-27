@@ -1,6 +1,6 @@
-import { shallow } from "enzyme";
 import React from "react";
-import Error from "./Error";
+import { shallow } from "enzyme";
+import Error from "../../../pages/components/Error";
 
 it("Shallow renders Error", () => {
   shallow(<Error />);

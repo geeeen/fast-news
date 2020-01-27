@@ -1,6 +1,6 @@
-import { shallow, mount } from "enzyme";
 import React from "react";
-import Search from "./Search";
+import { shallow, mount } from "enzyme";
+import Search from "../../../../pages/components/Header/components/Search";
 
 describe("Shallow renders Search", () => {
   it("Render", () => {

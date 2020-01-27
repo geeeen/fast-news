@@ -1,6 +1,6 @@
-import { shallow } from "enzyme";
 import React from "react";
-import NewsColumns from "./NewsColumns";
+import { shallow } from "enzyme";
+import NewsColumns from "../../../pages/components/NewsColumns/NewsColumns";
 
 describe("Shallow renders NewsColumns", () => {
   it("Render", () => {

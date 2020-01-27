@@ -1,17 +1,27 @@
 import React from "react";
 import { mount } from "enzyme";
-import MainPage from "./MainPage";
+import MainPage from "../../pages/MainPage";
 import { act } from "react-dom/test-utils";
 import axios from "axios";
 import { matchers } from "jest-emotion";
+import { CUSTOM_ERROR_CODE } from "../../constants";
 
 expect.extend(matchers);
 
 jest.mock("axios");
 
 describe("Shallow renders StyledMainPage", () => {
-  it("Properties and listeners", async () => {
-    axios.get.mockResolvedValue({ data: "data" });
+  it("Listeners", async () => {
+    axios.get.mockResolvedValue();
+    await act(async () => mount(<MainPage />));
+
+    await act(async () => window.dispatchEvent(new Event("DOMContentLoaded")));
+    await act(async () => window.dispatchEvent(new Event("resize")));
+    await act(async () => window.dispatchEvent(new Event("unload")));
+  });
+
+  it("Properties and s", () => {
+    axios.get.mockResolvedValue();
     const mainPage = mount(<MainPage />);
 
     expect(mainPage).toHaveStyleRule(
@@ -19,9 +29,8 @@ describe("Shallow renders StyledMainPage", () => {
       "grayscale(1) opacity(0.75) contrast(1.2)"
     );
 
-    await act(async () => window.dispatchEvent(new Event("DOMContentLoaded")));
-    await act(async () => window.dispatchEvent(new Event("resize")));
-    await act(async () => window.dispatchEvent(new Event("unload")));
+    mainPage.find("Header").invoke("setColored")(true);
+    expect(mainPage).toHaveStyleRule("filter", "grayscale(0)");
   });
 
   it("Render with fetched data", async () => {
@@ -47,7 +56,7 @@ describe("Shallow renders StyledMainPage", () => {
     const error = {
       response: {
         data: {
-          code: "parametersMissing"
+          code: CUSTOM_ERROR_CODE
         }
       }
     };
