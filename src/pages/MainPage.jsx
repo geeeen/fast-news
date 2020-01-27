@@ -6,12 +6,12 @@ import Footer from "./components/Footer";
 import yall from "yall-js";
 import styled from "@emotion/styled";
 import {
-  COLUMN_COUNT,
   GET_USER_COUNTRY,
   GET_NAVIGATOR_LANG,
   LS_PARAMS_NAME,
   CUSTOM_ERROR_MESSAGE,
-  CUSTOM_ERROR_CODE
+  CUSTOM_ERROR_CODE,
+  GET_COLUMN_COUNT
 } from "../constants";
 
 export const StyledMainPage = styled.div`
@@ -23,20 +23,25 @@ export const StyledMainPage = styled.div`
 `;
 
 const MainPage = () => {
-  const params = localStorage.getItem(LS_PARAMS_NAME);
-  const pArr = params ? params.split(",") : undefined;
+  const params = JSON.parse(localStorage.getItem(LS_PARAMS_NAME));
   const [news, setNews] = useState([]);
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
   const [searchString, setSearchString] = useState(undefined);
-  const [category, setCategory] = useState(pArr ? pArr[0] : "General");
-  const [pageSize, setPageSize] = useState(pArr ? pArr[1] : 20);
-  const [country, setCountry] = useState(
-    pArr ? pArr[2] : GET_USER_COUNTRY(GET_NAVIGATOR_LANG())
+  const [category, setCategory] = useState(
+    params && params.category ? params.category : "General"
   );
-  const [colored, setColored] = useState(pArr ? pArr[3] === "true" : false);
-  const [columnCount, setColumnCount] = useState(COLUMN_COUNT);
+  const [pageSize, setPageSize] = useState(
+    params && params.pageSize ? params.pageSize : 20
+  );
+  const [country, setCountry] = useState(
+    params && params.country
+      ? params.country
+      : GET_USER_COUNTRY(GET_NAVIGATOR_LANG())
+  );
+  const [colored, setColored] = useState(params && params.colored);
+  const [columnCount, setColumnCount] = useState(GET_COLUMN_COUNT());
 
   useEffect(() => {
     setNewsLoading(true);
@@ -72,12 +77,17 @@ const MainPage = () => {
   window.addEventListener("unload", () => {
     localStorage.setItem(
       LS_PARAMS_NAME,
-      [category, pageSize, country, colored].join(",")
+      JSON.stringify({
+        category: category,
+        pageSize: pageSize,
+        country: country,
+        colored: colored
+      })
     );
   });
 
   window.addEventListener("resize", () => {
-    setColumnCount(Math.round(window.innerWidth / 400));
+    setColumnCount(GET_COLUMN_COUNT());
   });
 
   return (

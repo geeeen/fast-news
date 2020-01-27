@@ -4,15 +4,13 @@ export const GET_NAVIGATOR_LANG = () => navigator.language;
 export const GET_USER_COUNTRY = nav_lang =>
   nav_lang ? nav_lang.replace(/(\w+-)/g, "").toLowerCase() : "us";
 
-export const LS_PARAMS_NAME = "params";
+export const GET_COLUMN_COUNT = () => Math.round(window.innerWidth / 400);
 
+export const LS_PARAMS_NAME = "params";
 export const CUSTOM_ERROR_CODE = "parametersMissing";
 export const CUSTOM_ERROR_MESSAGE = "Set Country, Category or Search String";
 
-export const COLUMN_COUNT = Math.round(window.innerWidth / 400);
-
 export const PAGE_SIZES = [10, 20, 30, 40, 50];
-
 export const CATEGORIES = [
   "Business",
   "Entertainment",
@@ -22,7 +20,6 @@ export const CATEGORIES = [
   "Sports",
   "Technology"
 ];
-
 export const COUNTRIES = {
   all: "World",
   ae: "United Arab Emirates",
