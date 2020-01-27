@@ -2,6 +2,7 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import Spinner from "./Spinner";
 import { matchers } from "jest-emotion";
+
 expect.extend(matchers);
 
 describe("Shallow renders Spinner", () => {

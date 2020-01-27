@@ -20,8 +20,8 @@ describe("Data service", () => {
     return getTopNews(10, "all", "car", "all").then(data =>
       expect(data).toEqual(news)
     );
-
   });
+
   it("Should throw error", () => {
     const error = {
       error: "Error"

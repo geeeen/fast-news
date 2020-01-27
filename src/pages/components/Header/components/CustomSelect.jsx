@@ -22,12 +22,7 @@ const StyledSelect = styled(Select)`
   }
 `;
 
-const CustomSelect = ({
-  value,
-  setValue,
-  renderFunction,
-  values
-}) => {
+const CustomSelect = ({ value, setValue, renderFunction, values }) => {
   const isArray = !!values.length;
   const menuItems = isArray ? values : Object.keys(values);
 

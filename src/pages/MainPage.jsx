@@ -9,7 +9,9 @@ import {
   COLUMN_COUNT,
   GET_USER_COUNTRY,
   GET_NAVIGATOR_LANG,
-  LS_PARAMS_NAME
+  LS_PARAMS_NAME,
+  CUSTOM_ERROR_MESSAGE,
+  CUSTOM_ERROR_CODE
 } from "../constants";
 
 export const StyledMainPage = styled.div`
@@ -47,11 +49,8 @@ const MainPage = () => {
         setNewsLoading(false);
       })
       .catch(error => {
-        if (
-          error.response &&
-          error.response.data.code === "parametersMissing"
-        ) {
-          setNewsError("Set Country, Category or Search String");
+        if (error.response && error.response.data.code === CUSTOM_ERROR_CODE) {
+          setNewsError(CUSTOM_ERROR_MESSAGE);
         } else {
           setNewsError(error.toString());
         }

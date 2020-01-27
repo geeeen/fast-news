@@ -1,26 +1,20 @@
 import React from "react";
 import { mount } from "enzyme";
 import MainPage from "./MainPage";
-import axios from "axios";
-
-import { matchers } from "jest-emotion";
-import yall from "yall-js";
 import { act } from "react-dom/test-utils";
+import axios from "axios";
+import { matchers } from "jest-emotion";
 
 expect.extend(matchers);
 
-jest.mock("yall-js");
 jest.mock("axios");
 
 describe("Shallow renders StyledMainPage", () => {
   it("Properties and listeners", async () => {
-    axios.get.mockResolvedValue();
-    // yall({
-    //   observeChanges: true
-    // });
-    const mainPage = await act(async () => mount(<MainPage />));
+    axios.get.mockResolvedValue({ data: "data" });
+    const mainPage = mount(<MainPage />);
 
-    await expect(mainPage).toHaveStyleRule(
+    expect(mainPage).toHaveStyleRule(
       "filter",
       "grayscale(1) opacity(0.75) contrast(1.2)"
     );

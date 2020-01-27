@@ -6,6 +6,9 @@ export const GET_USER_COUNTRY = nav_lang =>
 
 export const LS_PARAMS_NAME = "params";
 
+export const CUSTOM_ERROR_CODE = "parametersMissing";
+export const CUSTOM_ERROR_MESSAGE = "Set Country, Category or Search String";
+
 export const COLUMN_COUNT = Math.round(window.innerWidth / 400);
 
 export const PAGE_SIZES = [10, 20, 30, 40, 50];
