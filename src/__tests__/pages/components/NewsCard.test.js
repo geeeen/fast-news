@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import NewsCard from "../../../pages/components/NewsCard/NewsCard";
+import NewsCard from "../../../pages/components/NewsCard";
 
 describe("Shallow renders NewsCard", () => {
   it("Render", () => {

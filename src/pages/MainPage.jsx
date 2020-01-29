@@ -7,12 +7,13 @@ import yall from "yall-js";
 import styled from "@emotion/styled";
 import {
   GET_USER_COUNTRY,
-  GET_NAVIGATOR_LANG,
+  NAVIGATOR_LANG,
   LS_PARAMS_NAME,
   CUSTOM_ERROR_MESSAGE,
   CUSTOM_ERROR_CODE,
   GET_COLUMN_COUNT
 } from "../constants";
+import Error from "./components/Error";
 
 export const StyledMainPage = styled.div`
   margin: 1% 3%;
@@ -28,7 +29,7 @@ const MainPage = () => {
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(undefined);
   const [totalResults, setTotalResults] = useState(undefined);
-  const [searchString, setSearchString] = useState(undefined);
+  const [searchString, setSearchString] = useState("");
   const [category, setCategory] = useState(
     params && params.category ? params.category : "General"
   );
@@ -36,9 +37,7 @@ const MainPage = () => {
     params && params.pageSize ? params.pageSize : 20
   );
   const [country, setCountry] = useState(
-    params && params.country
-      ? params.country
-      : GET_USER_COUNTRY(GET_NAVIGATOR_LANG())
+    params && params.country ? params.country : GET_USER_COUNTRY(NAVIGATOR_LANG)
   );
   const [colored, setColored] = useState(params && params.colored);
   const [columnCount, setColumnCount] = useState(GET_COLUMN_COUNT());
@@ -104,12 +103,15 @@ const MainPage = () => {
         colored={colored}
         setColored={setColored}
       />
-      <NewsColumns
-        news={news}
-        newsLoading={newsLoading}
-        newsError={newsError}
-        columnCount={columnCount}
-      />
+      {newsError ? (
+        <Error error={newsError} />
+      ) : (
+        <NewsColumns
+          news={news}
+          newsLoading={newsLoading}
+          columnCount={columnCount}
+        />
+      )}
       <Footer />
     </StyledMainPage>
   );

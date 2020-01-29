@@ -29,7 +29,7 @@ describe("Shallow renders StyledMainPage", () => {
       "grayscale(1) opacity(0.75) contrast(1.2)"
     );
 
-    mainPage.find("Header").invoke("setColored")(true);
+    mainPage.find("header").invoke("setColored")(true);
     expect(mainPage).toHaveStyleRule("filter", "grayscale(0)");
   });
 

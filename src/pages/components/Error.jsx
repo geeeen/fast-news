@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import catImage from "../../../resources/cat.png";
+import catImage from "../../resources/cat.png";
 
 const StyledError = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const StyledError = styled.div`
   }
 `;
 
-const Error = ({ error }) => {
+const error = ({ error }) => {
   return (
     <StyledError>
       <img src={catImage} alt={"Empty"} />
@@ -26,4 +26,4 @@ const Error = ({ error }) => {
   );
 };
 
-export default Error;
+export default error;

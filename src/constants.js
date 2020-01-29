@@ -1,6 +1,6 @@
 export const API_KEY = "e81d8323c36b4293ad0e7598ce9a728f";
 
-export const GET_NAVIGATOR_LANG = () => navigator.language;
+export const NAVIGATOR_LANG = navigator.language;
 export const GET_USER_COUNTRY = nav_lang =>
   nav_lang ? nav_lang.replace(/(\w+-)/g, "").toLowerCase() : "us";
 

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import newspaperImage from "../../../resources/newspaper.jpg";
-import noise from "../../../resources/350-50-30.png";
-import spinner from "../../../resources/gen_spinner.gif";
+import newspaperImage from "../../resources/newspaper.jpg";
+import noise from "../../resources/350-50-30.png";
+import spinner from "../../resources/gen_spinner.gif";
 
 const Card = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ const Source = styled.h4`
   width: 90%;
 `;
 
-const NewsCard = ({ news }) => {
+const newsCard = ({ news }) => {
   const removeSourceFromTitle = title => {
     return title.replace(/(\s-\s[^-]+$)/g, "");
   };
@@ -85,4 +85,4 @@ const NewsCard = ({ news }) => {
   );
 };
 
-export default NewsCard;
+export default newsCard;

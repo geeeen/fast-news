@@ -18,7 +18,7 @@ const StyledSpinner = styled.div`
   }
 `;
 
-const Spinner = ({ size = 40, padding = 0, posAbsolute = false }) => {
+const spinner = ({ size = 40, padding = 0, posAbsolute = false }) => {
   return (
     <StyledSpinner padding={padding} posAbsolute={posAbsolute}>
       <CircularProgress
@@ -30,4 +30,4 @@ const Spinner = ({ size = 40, padding = 0, posAbsolute = false }) => {
   );
 };
 
-export default Spinner;
+export default spinner;

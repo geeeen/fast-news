@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import Spinner from "../../../pages/components/Spinner/Spinner";
+import Spinner from "../../../pages/components/Spinner";
 import { matchers } from "jest-emotion";
 
 expect.extend(matchers);

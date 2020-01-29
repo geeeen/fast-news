@@ -27,7 +27,7 @@ const Search = ({ setSearchString }) => {
   const searchInput = useRef();
 
   const clearInput = () => {
-    setSearchString(undefined);
+    setSearchString("");
     searchInput.current.value = "";
   };
 
@@ -42,7 +42,7 @@ const Search = ({ setSearchString }) => {
           event.keyCode === 13 ? setSearchString(event.target.value) : undefined
         }
         onChange={event =>
-          event.target.value === "" ? setSearchString(undefined) : undefined
+          event.target.value === "" ? setSearchString("") : undefined
         }
         endAdornment={
           <>

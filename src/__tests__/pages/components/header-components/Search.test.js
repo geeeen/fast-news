@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import Search from "../../../../pages/components/Header/components/Search";
+import Search from "../../../../pages/components/header-components/Search";
 
 describe("Shallow renders Search", () => {
   it("Render", () => {
@@ -18,7 +18,7 @@ describe("Shallow renders Search", () => {
     input.simulate("change", { target: { value } });
     input.simulate("keydown", { keyCode: 15, target: { value } });
 
-    expect(mockFunc.mock.calls[0][0]).toBe(undefined);
+    expect(mockFunc.mock.calls[0][0]).toBe("");
     expect(mockFunc.mock.calls[1][0]).toBe(value);
     expect(mockFunc.mock.calls.length).toBe(2);
   });
@@ -35,7 +35,7 @@ describe("Shallow renders Search", () => {
       .first()
       .simulate("click");
 
-    expect(mockFunc.mock.calls[0][0]).toBe(undefined);
+    expect(mockFunc.mock.calls[0][0]).toBe("");
     expect(mockFunc.mock.calls[1][0]).toBe("");
   });
 });

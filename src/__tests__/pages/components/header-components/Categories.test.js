@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import Categories from "../../../../pages/components/Header/components/Categories";
+import Categories from "../../../../pages/components/header-components/Categories";
 import { CATEGORIES } from "../../../../constants";
 import { matchers } from "jest-emotion";
 

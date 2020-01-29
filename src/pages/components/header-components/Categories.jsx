@@ -1,5 +1,5 @@
 import React from "react";
-import { CATEGORIES } from "../../../../constants";
+import { CATEGORIES } from "../../../constants";
 import styled from "@emotion/styled";
 
 const StyledCategories = styled.div`

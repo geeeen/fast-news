@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import slothImage from "../../../resources/sloth.png";
-import NewsCard from "../NewsCard";
-import Spinner from "../Spinner";
-import Error from "../Error";
+import slothImage from "../../resources/sloth.png";
+import NewsCard from "./NewsCard";
+import Spinner from "./Spinner";
 
 const RelativeDiv = styled.div`
   position: relative;
@@ -45,7 +44,7 @@ const EmptyNews = styled.div`
   }
 `;
 
-const NewsColumns = ({ news, newsLoading, newsError, columnCount }) => {
+const newsColumns = ({ news, newsLoading, newsError, columnCount }) => {
   const columns = () => {
     return Array.from({ length: columnCount }, (v, i) => i);
   };
@@ -60,29 +59,32 @@ const NewsColumns = ({ news, newsLoading, newsError, columnCount }) => {
     return resultArr;
   };
 
-  return newsError ? (
-    <Error error={newsError} />
-  ) : news && news.length > 0 ? (
+  const hasNews = news && news.length > 0;
+
+  return (
     <RelativeDiv>
-      {newsLoading && <Spinner size={150} padding={150} posAbsolute={true} />}
-      <Columns>
-        {columns().map(column => (
-          <Column key={column}>
-            {getNewsForColumn(column).map(news => (
-              <NewsCard key={news.url} news={news} />
-            ))}
-          </Column>
-        ))}
-      </Columns>
+      {newsLoading ? (
+        <Spinner size={150} padding={100} posAbsolute={hasNews} />
+      ) : null}
+      {hasNews ? (
+        <Columns>
+          {columns().map(column => (
+            <Column key={column}>
+              {getNewsForColumn(column).map(news => (
+                <NewsCard key={news.url} news={news} />
+              ))}
+            </Column>
+          ))}
+        </Columns>
+      ) : null}
+      {!hasNews && !newsLoading ? (
+        <EmptyNews>
+          <img src={slothImage} alt={"Empty"} />
+          <span>News Not Found</span>
+        </EmptyNews>
+      ) : null}
     </RelativeDiv>
-  ) : newsLoading ? (
-    <Spinner size={150} padding={100} />
-  ) : (
-    <EmptyNews>
-      <img src={slothImage} alt={"Empty"} />
-      <span>News Not Found</span>
-    </EmptyNews>
   );
 };
 
-export default NewsColumns;
+export default newsColumns;

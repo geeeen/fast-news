@@ -1,13 +1,13 @@
 import React from "react";
 import { Tooltip } from "@material-ui/core";
-import { PAGE_SIZES, COUNTRIES } from "../../../constants";
+import { PAGE_SIZES, COUNTRIES } from "../../constants";
 import styled from "@emotion/styled";
-import gen from "../../../resources/gen.png";
-import Spinner from "../Spinner";
-import CustomSwitch from "./components/CustomSwitch";
-import CustomSelect from "./components/CustomSelect";
-import Search from "./components/Search";
-import Categories from "./components/Categories";
+import gen from "../../resources/gen.png";
+import Spinner from "./Spinner";
+import CustomSwitch from "./header-components/CustomSwitch";
+import CustomSelect from "./header-components/CustomSelect";
+import Search from "./header-components/Search";
+import Categories from "./header-components/Categories";
 
 const HeaderRow = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ const SelectLabel = styled.span`
   margin: 10px 5px 0 0;
 `;
 
-const Header = ({
+const header = ({
   totalResults,
   category,
   setCategory,
@@ -125,4 +125,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default header;

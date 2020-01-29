@@ -1,5 +1,5 @@
 import React from "react";
-import CustomSelect from "../../../../pages/components/Header/components/CustomSelect";
+import CustomSelect from "../../../../pages/components/header-components/CustomSelect";
 import { shallow } from "enzyme";
 import { COUNTRIES, PAGE_SIZES } from "../../../../constants";
 
