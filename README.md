@@ -1,4 +1,4 @@
-## Project available at https://geeeen.github.io/fast-news/#/
+## Project available at https://geeeen.github.io/fast-news/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
