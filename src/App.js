@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect
@@ -30,7 +30,7 @@ const StyledAppBackground = styled.div`
 function App() {
   return (
     <StyledAppBackground>
-      <Router>
+      <Router basename={"/fast-news"}>
         <Switch>
           <Route path="/" component={MainPage} exact />
           <Redirect from="/" to="/" />
