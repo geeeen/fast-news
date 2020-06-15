@@ -63,7 +63,7 @@ const newsCard = ({ news }) => {
     <Card key={url}>
       {image && (
         <RelativeDiv>
-          <a href={url} target={"_blank"}>
+          <a href={url} target={"_blank"} rel="noopener noreferrer">
             <StyledImg
               id={"cardImage"}
               className={"lazy"}

@@ -76,7 +76,7 @@ const header = ({
     <>
       <HeaderRow>
         <StyledLogo>
-          <a href={"https://github.com/geeeen"} target={"_blank"}>
+          <a href={"https://github.com/geeeen"} target={"_blank"} rel="noopener noreferrer" >
             <img src={gen} alt={"Logo"} />
           </a>
         </StyledLogo>
